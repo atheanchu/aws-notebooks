@@ -1,0 +1,46 @@
+{
+  "Queue": "arn:aws:mediaconvert:ap-northeast-2:236241703319:queues/Default",
+  "UserMetadata": {},
+  "Role": "arn:aws:iam::236241703319:role/service-role/MediaConvert_Default_Role_Full",
+  "Settings": {
+    "TimecodeConfig": {
+      "Source": "ZEROBASED"
+    },
+    "OutputGroups": [
+      {
+        "Name": "Apple HLS",
+        "Outputs": [
+          {
+            "Preset": "System-Avc_16x9_720p_29_97fps_3500kbps",
+            "NameModifier": "mediaconvert-test-output"
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "HLS_GROUP_SETTINGS",
+          "HlsGroupSettings": {
+            "SegmentLength": 10,
+            "Destination": "s3://medialive-test-2/",
+            "MinSegmentLength": 0
+          }
+        }
+      }
+    ],
+    "Inputs": [
+      {
+        "AudioSelectors": {
+          "Audio Selector 1": {
+            "DefaultSelection": "DEFAULT"
+          }
+        },
+        "VideoSelector": {},
+        "TimecodeSource": "ZEROBASED",
+        "FileInput": "s3://medialive-test-1/medialive-clips_1_00001.ts"
+      }
+    ]
+  },
+  "AccelerationSettings": {
+    "Mode": "DISABLED"
+  },
+  "StatusUpdateInterval": "SECONDS_60",
+  "Priority": 0
+}
